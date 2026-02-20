@@ -19,8 +19,8 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
     { name: "Events", path: "/events" },
+    { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -33,23 +33,27 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/">
-          <a className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all duration-300">
-              M
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden shadow-lg shadow-primary/10 group-hover:shadow-primary/30 transition-all duration-300">
+              <img
+                src="/favicon.png"
+                alt="Matrix Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="font-display font-bold text-xl tracking-wider text-white group-hover:text-primary transition-colors">
               THE MATRIX
             </span>
-          </a>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link key={link.name} href={link.path}>
-              <a
+              <div
                 className={cn(
-                  "text-sm font-medium tracking-wide transition-colors hover:text-primary relative py-1",
+                  "text-sm font-medium tracking-wide transition-colors hover:text-primary relative py-1 cursor-pointer",
                   location === link.path ? "text-white" : "text-muted-foreground"
                 )}
               >
@@ -60,14 +64,9 @@ export function Navbar() {
                     className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"
                   />
                 )}
-              </a>
+              </div>
             </Link>
           ))}
-          <Link href="/events">
-            <a className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-2 rounded-full text-sm font-medium transition-all hover:border-primary/50 hover:shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-              Join Us
-            </a>
-          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -91,15 +90,15 @@ export function Navbar() {
             <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
                 <Link key={link.name} href={link.path}>
-                  <a
+                  <div
                     className={cn(
-                      "text-2xl font-heading font-medium",
+                      "text-2xl font-heading font-medium cursor-pointer",
                       location === link.path ? "text-primary" : "text-white/70"
                     )}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
-                  </a>
+                  </div>
                 </Link>
               ))}
             </div>

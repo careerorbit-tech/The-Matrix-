@@ -1,17 +1,25 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
-import { motion } from "framer-motion";
-import { ArrowRight, Star, Users, Telescope, Calendar } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { ArrowRight, Star, Users, Telescope, Calendar, Rocket, Globe, Microscope } from "lucide-react";
 import { Link } from "wouter";
+import { ReviewSection } from "@/components/sections/ReviewSection";
+
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 800], [0, 200]);
+  const springY = useSpring(y, { stiffness: 100, damping: 30 });
+
   const stats = [
-    { label: "Active Members", value: "500+", icon: Users },
-    { label: "Star Parties", value: "120+", icon: Star },
-    { label: "Workshops", value: "50+", icon: Telescope },
-    { label: "Years active", value: "10+", icon: Calendar },
+    { label: "Stargazers Engaged", value: "750+", icon: Users },
+    { label: "Successful Night Sky Sessions", value: "8+", icon: Telescope },
+    { label: "Participant Satisfaction", value: "100%", icon: Star },
+    { label: "Hours of Guided Observations", value: "120+ hrs", icon: Calendar },
   ];
+
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30">
@@ -19,16 +27,24 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
+      <section
+        className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+      >
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/hero-nebula.png" 
-            alt="Nebula" 
-            className="w-full h-full object-cover opacity-40"
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+        >
+          <motion.img
+            src="/images/hero-nebula.png"
+            alt="Nebula"
+            className="w-full h-full object-cover opacity-40 scale-110"
+            style={{ y: springY }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/80 to-background" />
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
@@ -36,37 +52,49 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium tracking-widest uppercase mb-6 backdrop-blur-sm">
-              The Matrix Astronomy Club
-            </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight tracking-tight">
-              Exploring the <br />
+            <div className="relative inline-block mb-6">
+              <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium tracking-widest uppercase backdrop-blur-sm relative z-10">
+                ✨ The Matrix Astronomy Club
+              </span>
+              <motion.div
+                className="absolute -inset-1 bg-primary/20 blur-xl rounded-full z-0"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+            </div>
+
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium text-white mb-6 leading-tight tracking-tight">
+              Empower explorers. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-400">
-                Universe Beyond
+                Master the Matrix.
               </span>
             </h1>
+
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-              Join India's fastest growing community of stargazers, scientists, and dreamers. We bring the cosmos closer to you through observation, education, and exploration.
+              The Matrix Club is an Astronomy & Space exploration hub, enabling you to discover, collaborate, and conquer the cosmos like never before.
             </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link href="/events">
-                <a className="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-medium transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] flex items-center justify-center gap-2 group">
-                  Explore Events
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                <div className="w-full sm:w-auto px-8 py-3.5 bg-white text-black hover:bg-white/90 rounded-full font-bold transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 group cursor-pointer text-base relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="relative z-10 font-heading">Explore Cosmos</span>
+                  <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                </div>
               </Link>
               <Link href="/about">
-                <a className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-medium transition-all backdrop-blur-sm flex items-center justify-center">
-                  Our Mission
-                </a>
+                <div className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-bold transition-all backdrop-blur-sm flex items-center justify-center cursor-pointer text-base group">
+                  <span className="font-heading">Join the Club</span>
+                </div>
               </Link>
             </div>
           </motion.div>
         </div>
-        
+
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/50"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -81,7 +109,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -100,11 +128,13 @@ export default function Home() {
         </div>
       </section>
 
+
+
       {/* About Preview */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <motion.div 
+            <motion.div
               className="lg:w-1/2 relative"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -112,14 +142,19 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="aspect-[4/3] rounded-2xl overflow-hidden relative z-10 border border-white/10 shadow-2xl">
-                <img src="/images/about-telescope.png" alt="Club Members" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <img
+                  src="/images/about-telescope.png"
+                  alt="Astromy club members observing the night sky with a telescope"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[50px] z-0" />
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[50px] z-0" />
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -157,7 +192,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <motion.div 
+          <motion.div
             className="group relative rounded-3xl overflow-hidden border border-white/10 bg-card hover:border-primary/50 transition-all duration-500"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -165,33 +200,32 @@ export default function Home() {
           >
             <div className="grid md:grid-cols-2 h-full">
               <div className="h-64 md:h-full overflow-hidden">
-                <img 
-                  src="/images/event-starparty.png" 
-                  alt="Star Party" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                <img
+                  src="/images/event-starparty.png"
+                  alt="Star Party"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center relative">
                 <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                   <Star size={120} />
                 </div>
-                
+
                 <div className="inline-flex items-center gap-2 text-accent text-sm font-bold uppercase tracking-wider mb-4">
                   <Calendar size={16} />
-                  <span>March 15, 2026</span>
+                  <span>February 28, 2026</span>
                 </div>
-                
+
                 <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 group-hover:text-primary transition-colors">
-                  Annual Star Gazing Camp
+                  STARGAZING NIGHT
                 </h3>
-                
+
                 <p className="text-muted-foreground mb-8 text-lg">
-                  Experience the Milky Way like never before. Join us at Panhala Fort for a night of deep sky observation, telescope workshops, and cosmic storytelling.
-                </p>
-                
-                <a 
-                  href="https://forms.google.com" 
-                  target="_blank" 
+                  We’ll observe planets and deep sky objects through telescopes, learn about constellations in the night sky, and enjoy a warm dinner followed by a cozy campfire. A perfect night to relax, learn, and connect under the stars.                </p>
+
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScrnh-MI4jiXaF33P7qhs8on6dUKiqvkxflC-_cjoomytX2ow/viewform"
+                  target="_blank"
                   className="inline-flex w-fit items-center justify-center px-6 py-3 bg-white text-black hover:bg-white/90 rounded-full font-bold transition-all"
                 >
                   Register Now
@@ -201,6 +235,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <ReviewSection />
 
       <Footer />
     </div>
