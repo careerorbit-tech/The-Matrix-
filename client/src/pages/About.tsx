@@ -2,7 +2,28 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { motion } from "framer-motion";
-import { Target, Lightbulb, Globe, ArrowRight } from "lucide-react";
+import { Target, Lightbulb, Globe, ArrowRight, Instagram, Linkedin, Twitter } from "lucide-react";
+
+const founders = [
+  {
+    name: "Vinayak More",
+    role: "CEO & Founder",
+    image: "/images/vinayak.jpeg",
+    bio: "Visionary leader with a passion for cosmic exploration and community building."
+  },
+  {
+    name: "Abhay Ayare",
+    role: "CTO & Founder",
+    image: "/images/Abhay (3).jpeg",
+    bio: "Expert in astronomical instrumentation and deep-sky imaging technologies."
+  },
+  {
+    name: "Jatin Savant",
+    role: "CFO & Founder",
+    image: "/images/jatin.jpeg",
+    bio: "Strategic financial planner ensuring the sustainable growth of our cosmic missions."
+  }
+];
 
 export default function About() {
   const values = [
@@ -166,7 +187,7 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Vinayak more",
+                name: "Vinayak More",
                 role: "CEO & Founder",
                 image: "/images/vinayak.jpeg",
                 bio: "Visionary leader with a passion for cosmic exploration and community building."
@@ -178,8 +199,8 @@ export default function About() {
                 bio: "Expert in astronomical instrumentation and deep-sky imaging technologies."
               },
               {
-                name: "Jatin Sawant",
-                role: "CFO",
+                name: "Jatin Savant",
+                role: "CFO & Founder",
                 image: "/images/jatin.jpeg",
                 bio: "Strategic financial planner ensuring the sustainable growth of our cosmic missions."
               }
@@ -190,23 +211,41 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
-                className="group relative"
+                className="group relative bg-[#0A0A0A] rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 shadow-2xl"
               >
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/50 transition-colors duration-500">
+                {/* Image Section with Fade */}
+                <div className="relative aspect-[4/4] overflow-hidden">
                   <img
                     src={founder.image}
                     alt={founder.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-
-                  <div className="absolute bottom-0 left-0 w-full p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-display font-bold text-white mb-1">{founder.name}</h3>
-                    <p className="text-primary font-bold text-sm uppercase tracking-widest mb-3">{founder.role}</p>
-                    <p className="text-muted-foreground text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                      {founder.bio}
-                    </p>
+                  {/* Top Badges (Reference Item) */}
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <div className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase font-bold tracking-widest text-primary flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                      Core Team
+                    </div>
                   </div>
+
+                  {/* Fade into text section */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-100" />
+                </div>
+
+                {/* Text Content Section (Apple-style) */}
+                <div className="p-8 pt-0 -mt-12 relative z-10">
+                  <h3 className="text-3xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors tracking-tight">
+                    {founder.name}
+                  </h3>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-primary font-bold text-xs uppercase tracking-[0.2em] brightness-125">
+                      {founder.role}
+                    </span>
+                  </div>
+                  <p className="text-white/60 text-[15px] leading-relaxed mb-8 line-clamp-3 group-hover:text-white/80 transition-colors">
+                    {founder.bio}
+                  </p>
+
                 </div>
               </motion.div>
             ))}
