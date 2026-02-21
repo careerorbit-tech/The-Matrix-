@@ -11,6 +11,7 @@ import Contact from "@/pages/Contact";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import CodeOfConduct from "@/pages/CodeOfConduct";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
   return (
@@ -31,6 +32,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <ScrollToTop />
         <Toaster />
         <Router />
       </TooltipProvider>
