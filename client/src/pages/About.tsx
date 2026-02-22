@@ -195,7 +195,7 @@ export default function About() {
               {
                 name: "Abhay Ayare",
                 role: "CTO & Founder",
-                image: "/images/Abhay (2).jpeg",
+                image: "/images/Abhay1.jpeg",
                 bio: "Expert in astronomical instrumentation and deep-sky imaging technologies."
               },
               {

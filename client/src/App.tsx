@@ -11,6 +11,9 @@ import Contact from "@/pages/Contact";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import CodeOfConduct from "@/pages/CodeOfConduct";
+import KolhapurStargazing from "@/pages/KolhapurStargazing";
+import AstronomyKolhapur from "@/pages/AstronomyKolhapur";
+import NightSkyKolhapur from "@/pages/NightSkyKolhapur";
 import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
@@ -23,6 +26,9 @@ function Router() {
       <Route path="/privacy" component={PrivacyPolicy} />
       <Route path="/terms" component={TermsOfService} />
       <Route path="/conduct" component={CodeOfConduct} />
+      <Route path="/kolhapur-stargazing" component={KolhapurStargazing} />
+      <Route path="/astronomy-in-kolhapur" component={AstronomyKolhapur} />
+      <Route path="/night-sky-observation-kolhapur" component={NightSkyKolhapur} />
       <Route component={NotFound} />
     </Switch>
   );

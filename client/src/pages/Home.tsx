@@ -64,9 +64,9 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium text-white mb-6 leading-tight tracking-tight">
-              Empower explorers. <br />
+              Kolhapur Stargazing & <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-400">
-                Master the Matrix.
+                Astronomy Experience
               </span>
             </h1>
 

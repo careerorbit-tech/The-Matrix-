@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cosmic-horizon.com/sitemap.xml
+Sitemap: https://www.kolhapurstargazing.in/sitemap.xml
