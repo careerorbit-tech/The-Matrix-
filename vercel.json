@@ -4,16 +4,20 @@
     "framework": "vite",
     "rewrites": [
         {
-            "source": "/(api|auth)(.*)",
-            "destination": "/index.cjs"
-        },
-        {
             "source": "/sitemap.xml",
             "destination": "/sitemap.xml"
         },
         {
             "source": "/robots.txt",
             "destination": "/robots.txt"
+        },
+        {
+            "source": "/api/(.*)",
+            "destination": "/index.cjs"
+        },
+        {
+            "source": "/auth/(.*)",
+            "destination": "/index.cjs"
         },
         {
             "source": "/(.*)",
