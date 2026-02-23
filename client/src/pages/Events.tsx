@@ -178,6 +178,82 @@ export default function Events() {
         </div>
       </section>
 
+      {/* School & College Track Section */}
+      <section className="py-20 bg-primary/5">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="h-px bg-white/20 flex-1" />
+            <h2 className="text-2xl font-display font-bold text-white uppercase tracking-widest text-center">School & College Event</h2>
+            <div className="h-px bg-white/20 flex-1" />
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-3xl font-display font-bold text-white mb-6">Educational, Fun, & Interactive Experiences</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Kolhapur Stargazing organizes customized astronomy and stargazing events specifically tailored for schools and colleges. We bring the wonders of the universe to your campus or host you at our dark-sky locations for unforgettable learning experiences.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6">
+                {[
+                  { icon: <MapPin className="text-primary" size={20} />, title: "Tailored Sessions", desc: "Customized according to curriculum and age group." },
+                  { icon: <Clock className="text-primary" size={20} />, title: "Expert Guides", desc: "Hands-on learning with professional guides." },
+                  { icon: <Calendar className="text-primary" size={20} />, title: "Practical Workshops", desc: "Telescope handling and night sky navigation." },
+                  { icon: <Calendar className="text-primary" size={20} />, title: "Certificates", desc: "Participation details and certificates for students." }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="mt-1">{item.icon}</div>
+                    <div>
+                      <h4 className="text-white font-bold mb-1">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a
+                  href="/school-college-brochure.pdf"
+                  className="px-8 py-3 bg-white text-black font-bold rounded-xl hover:bg-primary hover:text-white transition-all duration-300"
+                >
+                  Download Brochure
+                </a>
+                <a
+                  href="/contact"
+                  className="px-8 py-3 bg-transparent border border-white/20 text-white font-bold rounded-xl hover:border-primary hover:text-primary transition-all duration-300"
+                >
+                  Book a School/College Event
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative aspect-square lg:aspect-video rounded-3xl overflow-hidden border border-white/10 group"
+            >
+              <img
+                src="/images/about-telescope.png"
+                alt="Students using telescope"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="text-white font-medium italic">"Inspiring the next generation of astronomers through hands-on cosmic exploration."</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Past Events */}
       <section className="py-20 bg-white/[0.02]">
         <div className="container mx-auto px-6">
