@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="nebula" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(256)">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </radialGradient>
+  </defs>
+  <circle cx="256" cy="256" r="256" fill="url(#nebula)"/>
+  
+  <!-- Stylized Telescope -->
+  <g transform="translate(10, -10)">
+    <!-- Tripod Base -->
+    <path d="M240 330 L180 440 M280 330 L340 440 M260 330 L260 460" stroke="#EAB308" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- Telescope Body -->
+    <path d="M140 360 L340 120 L380 150 L180 390 Z" fill="#EAB308"/>
+    <path d="M330 110 L390 80 L420 110 L360 140 Z" fill="#FDE047"/>
+    
+    <!-- Viewfinder -->
+    <path d="M260 140 L310 80 L330 95 L280 155 Z" fill="#EAB308" opacity="0.8"/>
+  </g>
+
+  <!-- Celestial Bodies -->
+  <!-- Crescent Moon -->
+  <path d="M420 140 A70 70 0 1 0 340 60 A55 55 0 1 1 420 140 Z" fill="#FFFFFF"/>
+  
+  <!-- Stars -->
+  <path d="M110 110 L114 102 L122 98 L114 94 L110 86 L106 94 L98 98 L106 102 Z" fill="#FDE047">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite" />
+  </path>
+  
+  <circle cx="180" cy="60" r="4" fill="#FFFFFF" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="70" cy="240" r="3" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="440" cy="300" r="5" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="380" cy="400" r="2" fill="#FFFFFF" opacity="0.5"/>
+</svg>
