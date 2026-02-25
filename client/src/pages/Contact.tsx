@@ -54,7 +54,7 @@ export default function Contact() {
                   General Inquiries:
                 </p>
                 <a href="mailto:contact@thematrixclub.com" className="text-white hover:text-primary transition-colors text-xl font-medium">
-                  attheratematrix@gmail.com
+                  kolhapurstargazing@gmail.com
                 </a>
               </div>
 

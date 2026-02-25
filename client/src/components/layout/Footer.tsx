@@ -84,7 +84,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Mail size={18} className="text-primary shrink-0" />
-                <span>attheratematrix@gmail.com</span>
+                <span>kolhapurstargazing@gmail.com</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Phone size={18} className="text-primary shrink-0" />

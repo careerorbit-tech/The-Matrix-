@@ -8,11 +8,16 @@ export interface Event {
   id: number;
   title: string;
   date: string;
+  startDateIso: string;
+  endDateIso: string;
   time: string;
   location: string;
   description: string;
   image: string;
   category: "upcoming" | "past";
+  originalPrice?: string;
+  offerPrice?: string;
+  priceCurrency: string;
   driveUrl?: string;
 }
 
@@ -21,89 +26,147 @@ const events: Event[] = [
     id: 1,
     title: "STARGAZING NIGHT",
     date: "February 28, 2026",
+    startDateIso: "2026-02-28T18:00",
+    endDateIso: "2026-03-01T06:00",
     time: "Evening onwards",
     location: "Jeevan Farm, Kolhapur",
     description: "🌠 EVENT HIGHLIGHTS 🔭 Expert-Guided Stargazing with Advanced Telescopes 🎶 Music under the Stars ⛺ Tent Camping & Scenic Morning  View 🔥 Bonfire & Fun Astronomy Activities",
     image: "/images/event-starparty.png",
-    category: "upcoming"
+    category: "upcoming",
+    originalPrice: "1599",
+    offerPrice: "1299",
+    priceCurrency: "INR"
   },
-
-
-  // {
-  //   id: 2,
-  //   title: "Cosmos Lecture Series: Black Holes",
-  //   date: "April 02, 2026",
-  //   time: "10:00 - 12:00",
-  //   location: "DYP University Auditorium",
-  //   description: "Join us for an immersive lecture on the mysteries of Black Holes and Event Horizons by Dr. A. K. Ray, featuring latest data from the James Webb Space Telescope.",
-  //   image: "/images/event-lecture.png",
-  //   category: "upcoming"
-  // },
 
   {
     id: 3,
     title: "Night Stargazing Camp",
     date: "November 8, 2025",
+    startDateIso: "2025-11-08T18:00",
+    endDateIso: "2025-11-09T06:00",
     time: "18:00 - 06:00",
     location: "Kolhapur",
     description: "An immersive night stargazing experience featuring telescope observations of the Moon, Saturn, Jupiter, and deep-sky objects. Included guided constellation tours and beginner-friendly astronomy sessions.",
     image: "/images/1.jpg",
     category: "past",
+    priceCurrency: "INR",
     driveUrl: "https://drive.google.com/drive/folders/1wu_j15rHaNRCCJDS9Xl8NdlNkRc6gjrk"
   },
   {
     id: 4,
     title: "Family Stargazing Night",
     date: "November 29, 2025",
+    startDateIso: "2025-11-29T18:00",
+    endDateIso: "2025-11-30T06:00",
     time: "18:00 - 06:00",
     location: "Kolhapur",
     description: "A community-focused astronomy event with telescope viewing, celestial storytelling, and interactive sky navigation sessions designed for families and kids.",
     image: "/images/2.jpg",
     category: "past",
+    priceCurrency: "INR",
     driveUrl: "https://drive.google.com/drive/folders/1AQ1ey9jbkT0M1--2Ar7ftPGdLS9ZuLS8kfq"
   },
   {
     id: 5,
     title: "Geminid Meteor Shower Watch",
     date: "December 13, 2025",
+    startDateIso: "2025-12-13T22:00",
+    endDateIso: "2025-12-14T04:00",
     time: "22:00 - 04:00",
     location: "Kolhapur",
     description: "Witnessed the spectacular Geminid meteor shower under clear winter skies. Participants observed multiple bright meteors per hour, learned about meteor origins, and enjoyed guided night sky navigation with telescope support.",
     image: "/images/3.jpg",
     category: "past",
+    priceCurrency: "INR",
     driveUrl: "https://drive.google.com/drive/folders/16tyGYFJifJ0lCPkRwYeTetlbtQaXkFCk"
   },
   {
     id: 6,
     title: "Year-End Stargazing Special",
     date: "December 27, 2025",
+    startDateIso: "2025-12-27T18:00",
+    endDateIso: "2025-12-28T06:00",
     time: "18:00 - 06:00",
     location: "Kolhapur",
     description: "A special year-end astronomy gathering featuring advanced telescope sessions, deep-sky object viewing, and guided discussions on celestial mechanics.",
     image: "/images/4.JPG",
     category: "past",
+    priceCurrency: "INR",
     driveUrl: "https://drive.google.com/drive/folders/1uKlkcs6Ccs1rz-G9NbaE5ELAPdBBkpad"
   },
   {
     id: 7,
     title: "New Year Sky Watch",
     date: "January 17, 2026",
+    startDateIso: "2026-01-17T18:00",
+    endDateIso: "2026-01-18T06:00",
     time: "18:00 - 06:00",
     location: "Kolhapur",
     description: "A premium stargazing session with detailed lunar observation, planetary viewing, and hands-on guidance on using telescopes for beginners.",
     image: "/images/5.jpg",
     category: "past",
+    priceCurrency: "INR",
     driveUrl: "https://drive.google.com/drive/folders/12E4L299x5iUWKn9Mfl-_rIkMSrGZ2JoO"
   },
-
 ];
 
 export default function Events() {
   const upcomingEvents = events.filter(e => e.category === "upcoming");
   const pastEvents = events.filter(e => e.category === "past");
 
+  // Generate structured data for each event
+  const renderSchema = (event: Event) => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": event.title,
+      "description": event.description,
+      "image": `https://www.kolhapurstargazing.in${event.image}`,
+      "startDate": event.startDateIso,
+      "endDate": event.endDateIso,
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": event.location,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kolhapur",
+          "addressRegion": "Maharashtra",
+          "addressCountry": "IN"
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScrnh-MI4jiXaF33P7qhs8on6dUKiqvkxflC-_cjoomytX2ow/viewform",
+        "price": event.offerPrice || "0",
+        "priceCurrency": event.priceCurrency,
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2026-02-01T00:00"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kolhapur Stargazing",
+        "url": "https://www.kolhapurstargazing.in"
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kolhapur Stargazing"
+      }
+    };
+
+    return (
+      <script
+        key={`schema-${event.id}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
+      {events.map(event => renderSchema(event))}
       <ParticleBackground />
       <Navbar />
 
@@ -162,13 +225,30 @@ export default function Events() {
                     {event.description}
                   </p>
 
-                  <div className="mt-auto">
+                  <div className="mt-auto space-y-6">
+                    {event.offerPrice && (
+                      <div className="flex items-center justify-between p-4 rounded-2xl bg-primary/5 border border-primary/20">
+                        <div>
+                          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Special Offer</p>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-3xl font-display font-black text-white">₹{event.offerPrice}</span>
+                            {event.originalPrice && (
+                              <span className="text-lg text-muted-foreground line-through opacity-50">₹{event.originalPrice}</span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-primary font-bold text-sm">Save ₹{Number(event.originalPrice || 0) - Number(event.offerPrice || 0)}</p>
+                        </div>
+                      </div>
+                    )}
+
                     <a
                       href="https://docs.google.com/forms/d/e/1FAIpQLScrnh-MI4jiXaF33P7qhs8on6dUKiqvkxflC-_cjoomytX2ow/viewform?usp=send_form"
                       target="_blank"
-                      className="w-full block text-center py-3 bg-white text-black font-bold rounded-xl hover:bg-primary hover:text-white transition-colors"
+                      className="w-full block text-center py-4 bg-white text-black font-bold rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-lg shadow-white/5 hover:shadow-primary/20"
                     >
-                      Register Now
+                      Secure Your Spot
                     </a>
                   </div>
                 </div>
@@ -273,7 +353,7 @@ export default function Events() {
                 className="group relative aspect-video rounded-2xl overflow-hidden"
               >
                 <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/10 transition-opacity duration-300 flex flex-col justify-end p-6">
                   <h4 className="text-white font-bold text-lg mb-1">{event.title}</h4>
                   <p className="text-sm text-gray-300 mb-4">{event.date}</p>
 
