@@ -84,7 +84,7 @@ export default function Home() {
                   <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
-              <Link href="/about">
+              <Link href="/auth?mode=register">
                 <div className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-bold transition-all backdrop-blur-sm flex items-center justify-center cursor-pointer text-base group">
                   <span className="font-heading">Join the Club</span>
                 </div>

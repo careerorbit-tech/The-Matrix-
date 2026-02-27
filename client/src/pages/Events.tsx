@@ -300,7 +300,9 @@ export default function Events() {
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <a
-                  href="/school-college-brochure.pdf"
+                  href="https://drive.google.com/drive/folders/1wu_j15rHaNRCCJDS9Xl8NdlNkRc6gjrk"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-3 bg-white text-black font-bold rounded-xl hover:bg-primary hover:text-white transition-all duration-300"
                 >
                   Download Brochure
