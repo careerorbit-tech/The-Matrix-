@@ -15,8 +15,6 @@ import KolhapurStargazing from "@/pages/KolhapurStargazing";
 import AstronomyKolhapur from "@/pages/AstronomyKolhapur";
 import NightSkyKolhapur from "@/pages/NightSkyKolhapur";
 import ScrollToTop from "@/components/ScrollToTop";
-import AuthPage from "@/pages/AuthPage";
-import { AuthProvider } from "@/hooks/use-auth";
 
 function Router() {
   return (
@@ -31,22 +29,20 @@ function Router() {
       <Route path="/kolhapur-stargazing" component={KolhapurStargazing} />
       <Route path="/astronomy-in-kolhapur" component={AstronomyKolhapur} />
       <Route path="/night-sky-observation-kolhapur" component={NightSkyKolhapur} />
-      <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <ScrollToTop />
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </AuthProvider>
+      <TooltipProvider>
+        <ScrollToTop />
+        <Toaster />
+        <Router />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
