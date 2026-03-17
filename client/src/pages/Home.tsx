@@ -2,16 +2,36 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Star, Users, Telescope, Calendar, Rocket, Globe, Microscope } from "lucide-react";
+import { ArrowRight, Star, Users, Telescope, Calendar } from "lucide-react";
 import { Link } from "wouter";
 import { ReviewSection } from "@/components/sections/ReviewSection";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { MoonPhase, LUNAR_MONTH, NEW_MOON_REFERENCE } from "@/components/ui/MoonPhase";
 
 export default function Home() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 800], [0, 200]);
   const springY = useSpring(y, { stiffness: 100, damping: 30 });
+
+  const currentPhase = useMemo(() => {
+    const now = new Date().getTime();
+    const diff = (now - NEW_MOON_REFERENCE) / (1000 * 60 * 60 * 24);
+    const phase = (diff % LUNAR_MONTH) / LUNAR_MONTH;
+    return phase < 0 ? phase + 1 : phase;
+  }, []);
+
+  const getPhaseData = (phase: number) => {
+    if (phase < 0.02 || phase > 0.98) return { name: "New Moon", illumination: 0 };
+    if (phase < 0.23) return { name: "Waxing Crescent", illumination: phase * 100 };
+    if (phase < 0.27) return { name: "First Quarter", illumination: 50 };
+    if (phase < 0.48) return { name: "Waxing Gibbous", illumination: phase * 100 };
+    if (phase < 0.52) return { name: "Full Moon", illumination: 100 };
+    if (phase < 0.73) return { name: "Waning Gibbous", illumination: (1 - phase) * 100 };
+    if (phase < 0.77) return { name: "Last Quarter", illumination: 50 };
+    return { name: "Waning Crescent", illumination: (1 - phase) * 100 };
+  };
+
+  const moonData = getPhaseData(currentPhase);
 
   const stats = [
     { label: "Stargazers Engaged", value: "750+", icon: Users },
@@ -52,10 +72,56 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative inline-block mb-6">
-              <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium tracking-widest uppercase backdrop-blur-sm relative z-10">
+            <div className="relative inline-flex items-center gap-4 mb-8">
+              <span className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold tracking-widest uppercase backdrop-blur-md relative z-10 shadow-xl shadow-primary/5">
                 ✨ The Matrix Astronomy Club
               </span>
+
+              {/* Professional Sliding Info Badge */}
+              <motion.div
+                initial="initial"
+                whileHover="hover"
+                className="group flex items-center bg-black/40 border border-white/10 rounded-full pl-2 pr-5 py-1.5 backdrop-blur-xl shadow-2xl hover:border-primary/50 transition-all cursor-help relative overflow-hidden h-[46px] min-w-[170px]"
+              >
+                <div className="relative z-10">
+                  <MoonPhase size="sm" className="scale-90" />
+                </div>
+
+                <div className="relative flex flex-col items-start ml-3 h-full justify-center flex-1">
+                  {/* Default State: Tonight's Sky */}
+                  <motion.div
+                    variants={{
+                      initial: { y: 0, opacity: 1, filter: "blur(0px)" },
+                      hover: { y: -30, opacity: 0, filter: "blur(4px)" }
+                    }}
+                    transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                    className="flex flex-col items-start leading-tight absolute inset-0 justify-center"
+                  >
+                    <span className="text-[10px] text-white/90 font-bold uppercase tracking-[0.15em] whitespace-nowrap">Tonight's Sky</span>
+                    <span className="text-[8px] text-primary font-medium uppercase tracking-widest mt-0.5 whitespace-nowrap">
+                      Hover for info
+                    </span>
+                  </motion.div>
+
+                  {/* Hover State: Dynamic Moon Data */}
+                  <motion.div
+                    variants={{
+                      initial: { y: 30, opacity: 0, filter: "blur(4px)" },
+                      hover: { y: 0, opacity: 1, filter: "blur(0px)" }
+                    }}
+                    transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                    className="flex flex-col items-start leading-tight"
+                  >
+                    <span className="text-[10px] text-primary font-bold uppercase tracking-[0.1em] whitespace-nowrap">
+                      {moonData.name}
+                    </span>
+                    <span className="text-[8px] text-white/70 font-medium uppercase tracking-widest mt-0.5 whitespace-nowrap">
+                      {Math.round(moonData.illumination)}% Illumination
+                    </span>
+                  </motion.div>
+                </div>
+              </motion.div>
+
               <motion.div
                 className="absolute -inset-1 bg-primary/20 blur-xl rounded-full z-0"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -78,15 +144,10 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link href="/events">
-                <div className="w-full sm:w-auto px-8 py-3.5 bg-white text-black hover:bg-white/90 rounded-full font-bold transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 group cursor-pointer text-base relative overflow-hidden">
+                <div className="w-full sm:w-auto px-10 py-4 bg-white text-black hover:bg-white/90 rounded-full font-bold transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 group cursor-pointer text-lg relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="relative z-10 font-heading">Explore Cosmos</span>
-                  <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-              <Link href="/auth?mode=register">
-                <div className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-bold transition-all backdrop-blur-sm flex items-center justify-center cursor-pointer text-base group">
-                  <span className="font-heading">Join the Club</span>
+                  <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             </div>
@@ -168,9 +229,9 @@ export default function Home() {
                 The Matrix Astronomy Club isn't just a local group—it's a movement. Founded in Kolhapur, we are dedicated to making astronomy accessible, exciting, and professional. Whether you're a beginner with curious eyes or an amateur astronomer with a telescope, there's a place for you here.
               </p>
               <Link href="/about">
-                <a className="inline-flex items-center text-primary font-medium hover:text-white transition-colors gap-2 group">
+                <div className="inline-flex items-center text-primary font-medium hover:text-white transition-colors gap-2 group cursor-pointer">
                   Read our story <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                </div>
               </Link>
             </motion.div>
           </div>
@@ -186,9 +247,9 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-display font-bold text-white">Next Cosmic Event</h2>
             </div>
             <Link href="/events">
-              <a className="text-muted-foreground hover:text-white transition-colors flex items-center gap-2">
+              <div className="text-muted-foreground hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
                 View all events <ArrowRight size={16} />
-              </a>
+              </div>
             </Link>
           </div>
 

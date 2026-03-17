@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Rocket } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { MoonPhase } from "@/components/ui/MoonPhase";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2 group cursor-pointer">
+          <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden shadow-lg shadow-primary/10 group-hover:shadow-primary/30 transition-all duration-300">
               <img
                 src="/favicon.png"
@@ -42,9 +43,11 @@ export function Navbar() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-display font-bold text-xl tracking-wider text-white group-hover:text-primary transition-colors">
-              THE MATRIX
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="font-display font-bold text-xl tracking-wider text-white group-hover:text-primary transition-colors">
+                THE MATRIX
+              </span>
+            </div>
           </div>
         </Link>
 
@@ -68,6 +71,10 @@ export function Navbar() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="hidden md:flex items-center gap-6">
+          <MoonPhase size="sm" className="hidden lg:flex" />
         </div>
 
         {/* Mobile Toggle */}
@@ -102,6 +109,9 @@ export function Navbar() {
                   </div>
                 </Link>
               ))}
+              <div className="pt-6 border-t border-white/10">
+                <MoonPhase size="md" showDetails={true} className="items-start" />
+              </div>
             </div>
           </motion.div>
         )}
