@@ -33,11 +33,11 @@ export function ReviewSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-4 block">
+                        <span className="text-primary text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
                             Testimonials
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
-                            What Our Stargazers Say
+                        <h2 className="text-3xl md:text-5xl font-heading font-black text-white mb-6 uppercase tracking-tighter leading-[0.9]">
+                            What Our <span className="text-white/40">Stargazers Say</span>
                         </h2>
                         <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
                     </motion.div>
@@ -51,7 +51,7 @@ export function ReviewSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="group relative p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-primary/50 transition-all duration-300"
+                            className="group relative p-8 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-primary/30 transition-all duration-500 glass-shine"
                         >
                             <div className="absolute -top-4 -left-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary blur-sm group-hover:blur-0 transition-all">
                                 <Quote size={20} />

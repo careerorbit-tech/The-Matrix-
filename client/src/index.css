@@ -4,35 +4,38 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Orbitron', sans-serif;
   --font-heading: 'Space Grotesk', sans-serif;
 
-  --color-background: hsl(224 40% 7%);
+  --color-background: hsl(230 50% 3%);
   --color-foreground: hsl(210 40% 98%);
 
   --color-primary: hsl(258 90% 66%);
   --color-primary-foreground: hsl(210 40% 98%);
 
-  --color-secondary: hsl(215 25% 20%);
+  --color-secondary: hsl(230 30% 10%);
   --color-secondary-foreground: hsl(210 40% 98%);
 
   --color-accent: hsl(199 89% 48%);
-  --color-accent-foreground: hsl(224 40% 7%);
+  --color-accent-foreground: hsl(230 50% 3%);
 
-  --color-muted: hsl(217 33% 17%);
-  --color-muted-foreground: hsl(215 20% 65%);
+  --color-muted: hsl(230 30% 12%);
+  --color-muted-foreground: hsl(215 20% 70%);
 
-  --color-card: hsl(224 40% 9% / 0.7);
+  --color-card: hsl(230 40% 6% / 0.8);
   --color-card-foreground: hsl(210 40% 98%);
 
-  --color-border: hsl(217 33% 20%);
-  --color-input: hsl(217 33% 17%);
+  --color-border: hsl(230 30% 15% / 0.5);
+  --color-input: hsl(230 30% 12%);
 
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
 }
 
 @layer base {
@@ -42,6 +45,10 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground overflow-x-hidden selection:bg-primary/30 selection:text-white;
+    background-image:
+      radial-gradient(circle at 20% 20%, hsla(258, 90%, 66%, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, hsla(199, 89%, 48%, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
   }
 
   /* Smooth scrolling */
@@ -55,7 +62,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading tracking-tight;
+    @apply font-heading tracking-tight font-bold;
   }
 
   .font-display {
@@ -73,15 +80,50 @@
   }
 
   .glass {
-    @apply bg-background/60 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-background/60 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .glass-premium {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/5 shadow-glass hover:bg-white/[0.05] transition-all duration-500;
   }
 
   .glass-card {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300;
+    @apply bg-white/[0.02] backdrop-blur-md border border-white/5 shadow-xl hover:border-primary/30 transition-all duration-500 rounded-3xl;
   }
 
   .cosmic-glow {
-    box-shadow: 0 0 50px -10px hsl(258 90% 66% / 0.2);
+    box-shadow: 0 0 80px -20px hsl(258 90% 66% / 0.3);
+  }
+
+  .glass-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    pointer-events: none;
+  }
+
+  .glass-shine:hover::after {
+    left: 100%;
+    top: 100%;
+    transition: 1s;
+  }
+
+  .nebula-drift {
+    animation: nebula-drift 20s ease infinite alternate;
   }
 
   .star-flicker {
@@ -93,14 +135,33 @@
     0%,
     100% {
       opacity: 1;
+      transform: scale(1);
     }
 
     50% {
       opacity: 0.3;
+      transform: scale(0.8);
     }
   }
 
+  @keyframes nebula-drift {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
 
+    100% {
+      transform: translate(2%, 2%) scale(1.1);
+    }
+  }
+
+  /* Magnetic Button Effect (Simulated via transform) */
+  .btn-magnetic {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .btn-magnetic:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
 }
 
 /* Custom Scrollbar */

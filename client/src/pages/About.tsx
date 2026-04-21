@@ -49,86 +49,92 @@ export default function About() {
       <ParticleBackground />
       <Navbar />
 
-      {/* Header */}
-      <section className="pt-40 pb-20 relative">
+      <section className="pt-48 pb-24 relative overflow-hidden">
+        {/* Background Nebula Effect */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full -z-10 animate-pulse" />
+
         <div className="container mx-auto px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-display font-bold text-white mb-6"
+            transition={{ duration: 1 }}
           >
-            About <span className="text-primary">The Matrix</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
-          >
-            We are more than a club. We are a community of explorers looking up at the same sky, dreaming the same dreams.
-          </motion.p>
+            <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Our Story</span>
+            <h1 className="text-5xl md:text-7xl font-heading font-black text-white mb-8 tracking-tighter uppercase">
+              About <span className="text-white/40">The Matrix</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-medium tracking-wide">
+              We are more than a club. We are a community of explorers looking up at the same sky, dreaming the same dreams.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-20">
+
+      <section className="py-24">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="space-y-10"
             >
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">The Journey Begins</h2>
-              <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-display font-black text-white tracking-tighter uppercase leading-tight italic">The <span className="text-primary">Journey</span> Begins</h2>
+              <div className="space-y-8 text-white/50 text-lg leading-relaxed font-medium">
                 <p>
                   "The Matrix" was born in Kolhapur out of a simple shared passion: the night sky. What started as a small group of friends with a single telescope has grown into a premier organization dedicated to astronomy.
                 </p>
                 <p>
                   In a world often too focused on the ground, we teach people to look up. Astronomy is the oldest science, yet it remains the most futuristic. It humbles us, inspires us, and connects us to our origins.
                 </p>
-                <p>
-                  We conduct public stargazing events, school summer camps, and astronomy sessions for schools and colleges.
-                </p>
+                <div className="flex items-center gap-4 p-6 glass-card border-none bg-primary/5 rounded-3xl">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                    <Globe size={24} />
+                  </div>
+                  <p className="text-sm text-white/80 font-black uppercase tracking-widest leading-none">
+                    Founded in Kolhapur, <br />Exploring the Cosmos.
+                  </p>
+                </div>
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative"
+              transition={{ duration: 1 }}
+              className="relative aspect-square lg:aspect-video rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl group"
             >
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img
-                  src="/images/about-telescope.png"
-                  alt="Team of explorers using a high-end telescope for astronomical research"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
+              <img
+                src="/images/about-telescope.png"
+                alt="Team of explorers using a high-end telescope"
+                className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Values Grid */}
-      <section className="py-20 bg-white/[0.02] border-y border-white/5">
+      <section className="py-32 relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {values.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className="glass-card p-10 group hover:border-primary/30 transition-all duration-500"
               >
-                <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6">
-                  <item.icon size={28} />
+                <div className="w-16 h-16 rounded-[1.5rem] bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                  <item.icon size={32} />
                 </div>
-                <h3 className="text-xl font-display font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-2xl font-display font-black text-white mb-4 tracking-tighter uppercase">{item.title}</h3>
+                <p className="text-white/50 leading-relaxed font-medium">
                   {item.desc}
                 </p>
               </motion.div>
@@ -137,51 +143,56 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Astronomy Matters */}
-      <section className="py-24">
+      <section className="py-32 relative">
         <div className="container mx-auto px-6">
-          <div className="bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl p-1 md:p-1">
-            <div className="bg-background rounded-[22px] p-8 md:p-16 text-center relative overflow-hidden">
-              {/* Background pattern */}
-              <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="group glass-premium p-1 md:p-1 rounded-[4rem]"
+          >
+            <div className="bg-background/80 backdrop-blur-3xl rounded-[3.8rem] p-12 md:p-24 text-center relative overflow-hidden border border-white/5 shadow-2xl">
+              {/* Background patterns */}
+              <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent" />
 
               <div className="relative z-10 max-w-4xl mx-auto">
-                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-8">Why Astronomy Matters?</h2>
-                <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-                  "Astronomy compels the soul to look upwards and leads us from this world to another." — Plato.
-                  <br /><br />
+                <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-8 block">Cosmic Philosophy</span>
+                <h2 className="text-4xl md:text-6xl font-display font-black text-white mb-10 tracking-tighter uppercase leading-tight italic">
+                  "Astronomy compels the soul to look upwards and leads us from this world to another."
+                </h2>
+                <p className="text-xl text-white/50 mb-12 leading-relaxed font-medium italic">
+                  — Plato
+                </p>
+                <p className="text-lg text-white/60 mb-12 leading-relaxed font-medium">
                   In studying the stars, we learn physics, mathematics, chemistry, and philosophy. We learn patience and perspective. At The Matrix, we believe that understanding our place in the universe makes us better caretakers of our own planet.
                 </p>
-                <a href="/events" className="inline-flex items-center gap-2 text-white font-bold border-b-2 border-primary hover:text-primary transition-colors pb-1">
-                  Join our next observation session <ArrowRight size={18} />
+                <a href="/events" className="btn-magnetic group/link inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black rounded-full hover:bg-primary hover:text-white transition-all text-xs uppercase tracking-[0.2em] shadow-2xl glass-shine">
+                  <span className="relative z-10">Join the Mission</span>
+                  <ArrowRight size={18} className="relative z-10 group-hover/link:translate-x-2 transition-transform" />
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Founders Section */}
-      <section className="py-24 relative">
+      <section className="py-32 relative">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.h2
+          <div className="text-center mb-24">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-display font-bold text-white mb-4"
+              transition={{ duration: 1 }}
             >
-              Meet Our <span className="text-primary">Founders</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-muted-foreground text-lg max-w-2xl mx-auto"
-            >
-              The visionary minds behind The Matrix, dedicated to bringing the cosmos closer to everyone.
-            </motion.p>
+              <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Command Center</span>
+              <h2 className="text-4xl md:text-6xl font-heading font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
+                Meet Our <span className="text-white/40">Founders</span>
+              </h2>
+              <p className="text-lg text-white/50 max-w-2xl mx-auto font-medium tracking-wide">
+                The visionary minds behind The Matrix, dedicated to bringing the cosmos closer to everyone.
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -211,7 +222,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
-                className="group relative bg-[#0A0A0A] rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 shadow-2xl"
+                className="group relative bg-[#0A0A0A] rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 shadow-2xl glass-shine"
               >
                 {/* Image Section with Fade */}
                 <div className="relative aspect-[4/4] overflow-hidden">
@@ -238,7 +249,7 @@ export default function About() {
                     {founder.name}
                   </h3>
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-primary font-bold text-xs uppercase tracking-[0.2em] brightness-125">
+                    <span className="text-primary font-black text-[10px] uppercase tracking-[0.3em] brightness-125">
                       {founder.role}
                     </span>
                   </div>
