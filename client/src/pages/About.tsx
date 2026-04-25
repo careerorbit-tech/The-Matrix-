@@ -49,18 +49,18 @@ export default function About() {
       <ParticleBackground />
       <Navbar />
 
-      <section className="pt-48 pb-24 relative overflow-hidden">
+      <section className="pt-28 sm:pt-40 md:pt-48 pb-16 sm:pb-24 relative overflow-hidden">
         {/* Background Nebula Effect */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full -z-10 animate-pulse" />
 
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
             <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Our Story</span>
-            <h1 className="text-5xl md:text-7xl font-heading font-black text-white mb-8 tracking-tighter uppercase">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-heading font-black text-white mb-6 sm:mb-8 tracking-tighter uppercase">
               About <span className="text-white/40">The Matrix</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-medium tracking-wide">
@@ -71,9 +71,9 @@ export default function About() {
       </section>
 
 
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <section className="py-12 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -118,8 +118,8 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-32 relative overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-3 gap-10">
             {values.map((item, i) => (
               <motion.div
@@ -143,21 +143,21 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-32 relative">
-        <div className="container mx-auto px-6">
+      <section className="py-16 md:py-32 relative">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="group glass-premium p-1 md:p-1 rounded-[4rem]"
+            className="group glass-premium p-1 rounded-[2rem] md:rounded-[4rem]"
           >
-            <div className="bg-background/80 backdrop-blur-3xl rounded-[3.8rem] p-12 md:p-24 text-center relative overflow-hidden border border-white/5 shadow-2xl">
+            <div className="bg-background/80 backdrop-blur-3xl rounded-[1.8rem] md:rounded-[3.8rem] p-8 sm:p-12 md:p-24 text-center relative overflow-hidden border border-white/5 shadow-2xl">
               {/* Background patterns */}
               <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent" />
 
               <div className="relative z-10 max-w-4xl mx-auto">
                 <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-8 block">Cosmic Philosophy</span>
-                <h2 className="text-4xl md:text-6xl font-display font-black text-white mb-10 tracking-tighter uppercase leading-tight italic">
+                <h2 className="text-2xl sm:text-4xl md:text-6xl font-display font-black text-white mb-6 sm:mb-10 tracking-tighter uppercase leading-tight italic">
                   "Astronomy compels the soul to look upwards and leads us from this world to another."
                 </h2>
                 <p className="text-xl text-white/50 mb-12 leading-relaxed font-medium italic">
@@ -176,9 +176,9 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-32 relative">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-24">
+      <section className="py-16 md:py-32 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 md:mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -186,7 +186,7 @@ export default function About() {
               transition={{ duration: 1 }}
             >
               <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Command Center</span>
-              <h2 className="text-4xl md:text-6xl font-heading font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-white mb-6 sm:mb-8 tracking-tighter uppercase leading-[0.9]">
                 Meet Our <span className="text-white/40">Founders</span>
               </h2>
               <p className="text-lg text-white/50 max-w-2xl mx-auto font-medium tracking-wide">
@@ -225,7 +225,7 @@ export default function About() {
                 className="group relative bg-[#0A0A0A] rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 shadow-2xl glass-shine"
               >
                 {/* Image Section with Fade */}
-                <div className="relative aspect-[4/4] overflow-hidden">
+                <div className="relative aspect-[4/3] sm:aspect-[4/4] overflow-hidden">
                   <img
                     src={founder.image}
                     alt={founder.name}
@@ -244,12 +244,12 @@ export default function About() {
                 </div>
 
                 {/* Text Content Section (Apple-style) */}
-                <div className="p-8 pt-0 -mt-12 relative z-10">
-                  <h3 className="text-3xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors tracking-tight">
+                <div className="p-5 sm:p-8 pt-0 -mt-12 relative z-10">
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors tracking-tight">
                     {founder.name}
                   </h3>
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-primary font-black text-[10px] uppercase tracking-[0.3em] brightness-125">
+                    <span className="text-primary font-black text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] brightness-125">
                       {founder.role}
                     </span>
                   </div>

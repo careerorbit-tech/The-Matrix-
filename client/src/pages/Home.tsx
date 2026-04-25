@@ -81,13 +81,13 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         </motion.div>
 
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
               <span className="inline-block py-2 px-6 rounded-full bg-white/5 border border-white/10 text-primary text-[10px] font-black tracking-[0.3em] uppercase backdrop-blur-3xl relative z-10 shadow-2xl">
                 ✨ The Matrix Astronomy Club
               </span>
@@ -96,7 +96,7 @@ export default function Home() {
               <motion.div
                 initial="initial"
                 whileHover="hover"
-                className="group flex items-center bg-white/[0.03] border border-white/5 rounded-full pl-2 pr-6 py-2 backdrop-blur-3xl shadow-2xl hover:border-primary/30 transition-all cursor-help relative overflow-hidden h-[48px] min-w-[200px]"
+                className="group flex items-center bg-white/[0.03] border border-white/5 rounded-full pl-2 pr-4 sm:pr-6 py-2 backdrop-blur-3xl shadow-2xl hover:border-primary/30 transition-all cursor-help relative overflow-hidden h-[44px] sm:h-[48px] min-w-[180px] sm:min-w-[200px] max-w-full"
               >
                 <div className="relative z-10">
                   <MoonPhase size="sm" className="scale-90" />
@@ -142,7 +142,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-heading font-black text-white mb-8 leading-[1.1] tracking-tight"
+              className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-black text-white mb-6 sm:mb-8 leading-[1.1] tracking-tight"
               style={{ x: mousePos.x * -0.2, y: mousePos.y * -0.2 }}
             >
               Kolhapur Stargazing & <br />
@@ -178,9 +178,9 @@ export default function Home() {
 
 
       {/* Stats Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-10">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -188,12 +188,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
-                className="glass-card p-8 group hover:scale-105 glass-shine"
+                className="glass-card p-5 sm:p-8 group hover:scale-105 glass-shine"
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-black transition-all duration-500">
-                  <stat.icon size={28} />
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-4 sm:mb-6 group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                  <stat.icon size={22} className="sm:hidden" />
+                  <stat.icon size={28} className="hidden sm:block" />
                 </div>
-                <h3 className="text-4xl lg:text-5xl font-display font-black text-white mb-2 tracking-tighter">
+                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-display font-black text-white mb-2 tracking-tighter">
                   {stat.value}
                 </h3>
                 <p className="text-muted-foreground text-[10px] uppercase tracking-[0.2em] font-black group-hover:text-primary transition-colors">
@@ -208,9 +209,9 @@ export default function Home() {
 
 
       {/* About Preview */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
             <motion.div
               className="lg:w-1/2 relative"
               initial={{ opacity: 0, x: -50 }}
@@ -239,7 +240,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-2xl md:text-4xl font-display font-black text-white mb-6 uppercase tracking-tighter leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-display font-black text-white mb-4 sm:mb-6 uppercase tracking-tighter leading-tight">
                 From Kolhapur to the <br /><span className="text-primary italic">Cosmos</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
@@ -256,9 +257,9 @@ export default function Home() {
       </section>
 
       {/* Featured Event Preview */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6 sm:gap-8">
             <div className="max-w-2xl">
               <span className="text-primary text-xs font-black uppercase tracking-[0.4em] mb-4 block">Seasonal Spotlight</span>
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-black text-white tracking-tighter leading-[0.9] uppercase">
@@ -276,14 +277,14 @@ export default function Home() {
           </div>
 
           <motion.div
-            className="glass-premium rounded-[3rem] overflow-hidden group"
+            className="glass-premium rounded-[1.5rem] sm:rounded-[2.5rem] md:rounded-[3rem] overflow-hidden group"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
             <div className="grid lg:grid-cols-2">
-              <div className="h-80 lg:h-full overflow-hidden relative">
+              <div className="h-56 sm:h-72 lg:h-full overflow-hidden relative">
                 <img
                   src="/images/event-starparty.png"
                   alt="Star Party"
@@ -291,7 +292,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent hidden lg:block" />
               </div>
-              <div className="p-10 lg:p-20 flex flex-col justify-center relative">
+              <div className="p-6 sm:p-10 lg:p-20 flex flex-col justify-center relative">
                 <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:opacity-10 group-hover:scale-110 transition-all duration-1000">
                   <Star size={200} />
                 </div>
@@ -305,7 +306,7 @@ export default function Home() {
                   Star Gazing <br />Event
                 </h3>
 
-                <div className="flex flex-wrap items-center gap-4 mb-10">
+                <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-10">
                   <Badge variant="destructive" className="bg-red-500/10 text-red-500 border-red-500/20 px-4 py-2 font-black uppercase text-[10px] tracking-widest animate-pulse">
                     🏆 Biggest Offer of the Year
                   </Badge>
@@ -319,7 +320,7 @@ export default function Home() {
                 </div>
 
                 <Link href="/events">
-                  <div className="inline-flex w-fit items-center justify-center px-10 py-5 bg-white text-black hover:bg-primary hover:text-white rounded-full font-black text-sm uppercase tracking-widest transition-all duration-500 shadow-2xl group/btn cursor-pointer">
+                  <div className="inline-flex w-full sm:w-fit items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-white text-black hover:bg-primary hover:text-white rounded-full font-black text-sm uppercase tracking-widest transition-all duration-500 shadow-2xl group/btn cursor-pointer">
                     Secure Your Seat
                     <ArrowRight size={20} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
                   </div>

@@ -284,12 +284,12 @@ export default function Events() {
       <Navbar />
 
       {/* Header Section */}
-      <section className="pt-48 pb-24 text-center px-6 relative overflow-hidden">
+      <section className="pt-28 sm:pt-40 md:pt-48 pb-16 sm:pb-24 text-center px-4 sm:px-6 relative overflow-hidden">
         <motion.div
           className="absolute top-0 left-0 w-full h-full -z-10"
           style={{ y: springY }}
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full animate-pulse" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] md:w-[800px] h-[200px] sm:h-[300px] md:h-[400px] bg-primary/10 blur-[120px] rounded-full animate-pulse" />
         </motion.div>
 
         <motion.div
@@ -298,7 +298,7 @@ export default function Events() {
           transition={{ duration: 1 }}
         >
           <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">The Matrix Schedule</span>
-          <h1 className="text-5xl md:text-7xl font-heading font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-heading font-black text-white mb-6 sm:mb-8 tracking-tighter uppercase leading-[0.9]">
             Cosmic <span className="text-white/40">Events</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-medium tracking-wide">
@@ -309,8 +309,8 @@ export default function Events() {
 
 
       {/* Upcoming Events */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-4 mb-16">
             <div className="h-px bg-white/10 flex-1" />
             <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">Upcoming Launch</span>
@@ -325,9 +325,9 @@ export default function Events() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.1 }}
-                className="group relative flex flex-col glass-premium rounded-[3rem] overflow-hidden border border-white/5 transition-all duration-500 hover:shadow-[0_0_50px_-12px_rgba(168,85,247,0.3)] glass-shine"
+                className="group relative flex flex-col glass-premium rounded-[1.5rem] sm:rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border border-white/5 transition-all duration-500 hover:shadow-[0_0_50px_-12px_rgba(168,85,247,0.3)] glass-shine"
               >
-                <div className="h-80 overflow-hidden relative">
+                <div className="h-56 sm:h-72 md:h-80 overflow-hidden relative">
                   <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
@@ -350,9 +350,9 @@ export default function Events() {
                   </div>
                 </div>
 
-                <div className="p-10 flex flex-col flex-1 text-left">
+                <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1 text-left">
                   <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-2xl font-display font-black text-white group-hover:text-primary transition-colors tracking-tighter uppercase">{event.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-display font-black text-white group-hover:text-primary transition-colors tracking-tighter uppercase">{event.title}</h3>
                     {event.mapsUrl && (
                       <a
                         href={event.mapsUrl}
@@ -472,15 +472,15 @@ export default function Events() {
       </section>
 
       {/* School & College Track Section */}
-      <section className="py-32 relative overflow-hidden bg-primary/[0.02]">
-        <div className="container mx-auto px-6 text-left">
-          <div className="flex items-center gap-8 mb-16">
+      <section className="py-16 md:py-32 relative overflow-hidden bg-primary/[0.02]">
+        <div className="container mx-auto px-4 sm:px-6 text-left">
+          <div className="flex items-center gap-4 sm:gap-8 mb-10 md:mb-16">
             <div className="h-px bg-white/10 flex-1" />
             <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">Institutional Programs</span>
             <div className="h-px bg-white/10 flex-1" />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -489,7 +489,7 @@ export default function Events() {
               className="space-y-12"
             >
               <div>
-                <h3 className="text-3xl md:text-4xl font-display font-black text-white mb-8 tracking-tighter uppercase leading-tight">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-black text-white mb-5 sm:mb-8 tracking-tighter uppercase leading-tight">
                   Educational, Fun, & <br /><span className="text-primary italic">Interactive</span> Experiences
                 </h3>
                 <p className="text-lg text-white/60 leading-relaxed font-medium">
@@ -516,12 +516,12 @@ export default function Events() {
                 <a
                   href="https://drive.google.com/drive/folders/1wu_j15rHaNRCCJDS9Xl8NdlNkRc6gjrk"
                   target="_blank"
-                  className="px-10 py-4 bg-white text-black font-black rounded-full hover:bg-primary hover:text-white transition-all text-xs uppercase tracking-widest text-center"
+                  className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-4 bg-white text-black font-black rounded-full hover:bg-primary hover:text-white transition-all text-xs uppercase tracking-widest text-center"
                 >
                   Download Brochure
                 </a>
                 <Link href="/contact">
-                  <div className="px-10 py-4 bg-transparent border border-white/10 text-white font-black rounded-full hover:border-primary hover:text-primary transition-all text-xs uppercase tracking-widest cursor-pointer text-center">
+                  <div className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-4 bg-transparent border border-white/10 text-white font-black rounded-full hover:border-primary hover:text-primary transition-all text-xs uppercase tracking-widest cursor-pointer text-center">
                     Book Event Now
                   </div>
                 </Link>
@@ -549,8 +549,8 @@ export default function Events() {
       </section>
 
       {/* Past Events Section */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-6">
+      <section className="py-16 md:py-32 relative">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-20 text-left">
             <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">Archive</span>
             <h2 className="text-3xl md:text-4xl font-display font-black text-white tracking-tighter uppercase">Past <span className="text-white/40">Gallery</span></h2>
