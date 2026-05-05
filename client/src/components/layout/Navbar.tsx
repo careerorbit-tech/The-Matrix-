@@ -22,6 +22,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Events", path: "/events" },
+    { name: "Sky Calendar", path: "/calendar" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];

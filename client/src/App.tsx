@@ -14,6 +14,7 @@ import CodeOfConduct from "@/pages/CodeOfConduct";
 import KolhapurStargazing from "@/pages/KolhapurStargazing";
 import AstronomyKolhapur from "@/pages/AstronomyKolhapur";
 import NightSkyKolhapur from "@/pages/NightSkyKolhapur";
+import CalendarPage from "@/pages/CalendarPage";
 import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/kolhapur-stargazing" component={KolhapurStargazing} />
       <Route path="/astronomy-in-kolhapur" component={AstronomyKolhapur} />
       <Route path="/night-sky-observation-kolhapur" component={NightSkyKolhapur} />
+      <Route path="/calendar" component={CalendarPage} />
       <Route component={NotFound} />
     </Switch>
   );
