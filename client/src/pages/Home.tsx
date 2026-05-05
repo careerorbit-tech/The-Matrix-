@@ -8,6 +8,8 @@ import { ReviewSection } from "@/components/sections/ReviewSection";
 import { useEffect, useState, useMemo } from "react";
 import { MoonPhase, LUNAR_MONTH, NEW_MOON_REFERENCE } from "@/components/ui/MoonPhase";
 import { Badge } from "@/components/ui/badge";
+import astroEvents from "@/components/AstroCalendar/astroEvents2026";
+import { type AstroEvent } from "@/components/AstroCalendar/astroEvents2026";
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -56,6 +58,29 @@ export default function Home() {
     { label: "Successful Sessions", value: "12+", icon: Star },
     { label: "Observation Hours", value: "150+ hrs", icon: Calendar },
   ];
+
+  // Logic to find the next "Major" event (Eclipse or Meteor Shower or Opposition)
+  const featuredEvent = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Get all event dates and sort them
+    const sortedDates = Object.keys(astroEvents).sort();
+
+    for (const dateStr of sortedDates) {
+      const eventDate = new Date(dateStr);
+      // We look for events in the next 60 days
+      if (eventDate >= today && eventDate <= new Date(today.getTime() + 60 * 24 * 60 * 60 * 1000)) {
+        const dayEvents = astroEvents[dateStr];
+        // Priority: Eclipse > Meteor Shower > Planet Opposition
+        const majorEvent = dayEvents.find(e => e.type === "eclipse" || e.type === "meteor_shower" || (e.type === "planet" && e.name.toLowerCase().includes("opposition")));
+        if (majorEvent) {
+          return { ...majorEvent, dateStr };
+        }
+      }
+    }
+    return null;
+  }, []);
 
 
   return (
@@ -286,8 +311,11 @@ export default function Home() {
             <div className="grid lg:grid-cols-2">
               <div className="h-56 sm:h-72 lg:h-full overflow-hidden relative">
                 <img
-                  src="/images/event-starparty.png"
-                  alt="Star Party"
+                  src={featuredEvent
+                    ? (featuredEvent.type === "eclipse" ? "/images/event-eclipse-featured.png" : "/images/event-starparty.png")
+                    : "/images/event-starparty.png"
+                  }
+                  alt={featuredEvent ? featuredEvent.name : "Star Party"}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent hidden lg:block" />
@@ -297,34 +325,69 @@ export default function Home() {
                   <Star size={200} />
                 </div>
 
-                <div className="inline-flex items-center gap-3 text-accent text-xs font-black uppercase tracking-[0.2em] mb-8">
-                  <Calendar size={18} />
-                  <span>April 25, 2026</span>
-                </div>
+                {featuredEvent ? (
+                  <>
+                    <div className="inline-flex items-center gap-3 text-accent text-xs font-black uppercase tracking-[0.2em] mb-8">
+                      <Calendar size={18} />
+                      <span>{new Date(featuredEvent.dateStr).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                    </div>
 
-                <h3 className="text-3xl md:text-5xl font-display font-black text-white mb-6 tracking-tighter leading-tight group-hover:text-primary transition-colors uppercase">
-                  Star Gazing <br />Event
-                </h3>
+                    <h3 className="text-3xl md:text-5xl font-display font-black text-white mb-6 tracking-tighter leading-tight group-hover:text-primary transition-colors uppercase">
+                      {featuredEvent.name.split(' ').slice(0, 2).join(' ')} <br />
+                      {featuredEvent.name.split(' ').slice(2).join(' ')}
+                    </h3>
 
-                <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-10">
-                  <Badge variant="destructive" className="bg-red-500/10 text-red-500 border-red-500/20 px-4 py-2 font-black uppercase text-[10px] tracking-widest animate-pulse">
-                    🏆 Biggest Offer of the Year
-                  </Badge>
-                  <div className="text-primary font-black text-2xl tracking-tighter">₹999 <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Registration</span></div>
-                </div>
+                    <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-10">
+                      <Badge variant="destructive" className="bg-red-500/10 text-red-500 border-red-500/20 px-4 py-2 font-black uppercase text-[10px] tracking-widest animate-pulse">
+                        🏆 Upcoming Highlight
+                      </Badge>
+                      <div className="text-primary font-black text-2xl tracking-tighter">FREE <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Observation Session</span></div>
+                    </div>
 
-                <div className="space-y-6 mb-12">
-                  <p className="text-white/60 text-lg leading-relaxed font-medium">
-                    Hey there, cosmic dreamer! Get ready to drift beyond the ordinary and step into a night filled with celestial magic. Join Team Matrix for an unforgettable evening under the stars where we’ll explore the moon’s mysteries and spot constellations.
-                  </p>
-                </div>
+                    <div className="space-y-6 mb-12">
+                      <p className="text-white/60 text-lg leading-relaxed font-medium line-clamp-3">
+                        {featuredEvent.description}
+                      </p>
+                    </div>
 
-                <Link href="/events">
-                  <div className="inline-flex w-full sm:w-fit items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-white text-black hover:bg-primary hover:text-white rounded-full font-black text-sm uppercase tracking-widest transition-all duration-500 shadow-2xl group/btn cursor-pointer">
-                    Secure Your Seat
-                    <ArrowRight size={20} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
-                  </div>
-                </Link>
+                    <Link href="/calendar">
+                      <div className="inline-flex w-full sm:w-fit items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-white text-black hover:bg-primary hover:text-white rounded-full font-black text-sm uppercase tracking-widest transition-all duration-500 shadow-2xl group/btn cursor-pointer">
+                        View Sky Calendar
+                        <ArrowRight size={20} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
+                      </div>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <div className="inline-flex items-center gap-3 text-accent text-xs font-black uppercase tracking-[0.2em] mb-8">
+                      <Telescope size={18} />
+                      <span>Always Active</span>
+                    </div>
+
+                    <h3 className="text-3xl md:text-5xl font-display font-black text-white mb-6 tracking-tighter leading-tight group-hover:text-primary transition-colors uppercase">
+                      Explore <br />The Depths
+                    </h3>
+
+                    <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-10">
+                      <Badge variant="default" className="bg-primary/10 text-primary border-primary/20 px-4 py-2 font-black uppercase text-[10px] tracking-widest">
+                        🔭 Mission Planning
+                      </Badge>
+                    </div>
+
+                    <div className="space-y-6 mb-12">
+                      <p className="text-white/60 text-lg leading-relaxed font-medium">
+                        We are currently planning our next deep-sky expedition. While you wait, explore the full 2026 Sky Calendar or book a private session.
+                      </p>
+                    </div>
+
+                    <Link href="/calendar">
+                      <div className="inline-flex w-full sm:w-fit items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-white text-black hover:bg-primary hover:text-white rounded-full font-black text-sm uppercase tracking-widest transition-all duration-500 shadow-2xl group/btn cursor-pointer">
+                        Full Sky Calendar
+                        <ArrowRight size={20} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
+                      </div>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

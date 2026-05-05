@@ -41,57 +41,30 @@ export interface Event {
 
 const events: Event[] = [
   {
-    id: 10,
-    title: "Star Gazing Event",
-    date: "April 25, 2026",
-    startDateIso: "2026-04-25T18:00:00",
-    endDateIso: "2026-04-26T06:00:00",
+    id: 12,
+    title: "Celestial Night Expedition",
+    date: "May 1, 2026",
+    startDateIso: "2026-05-01T18:00:00",
+    endDateIso: "2026-05-02T06:00:00",
     time: "6:00 PM onwards",
-    location: "ANAND Farmhouse, Shelakewadi, Kolhapur",
-    mapsUrl: "https://maps.app.goo.gl/kXiqxpvxDUJXzm4K9",
-    description: "Hey there, cosmic dreamer! Get ready to drift beyond the ordinary and step into a night filled with celestial magic. Join Team Matrix for an unforgettable evening under the stars where we’ll explore the moon’s mysteries, spot constellations, and connect with fellow astronomy lovers. Whether you’re an astro-nerd, a romantic stargazer, or just someone who wants to escape the chaos for a night of peace — this event is for you.",
-    highlights: [
-      "Moon observation session",
-      "Telescope viewing",
-      "Constellation spotting",
-      "Stargazing with astronomy enthusiasts",
-      "Outdoor farmhouse atmosphere",
-      "Astronomy discussions and group activities"
-    ],
-    image: "/images/event-starparty.png",
-    isLimited: true,
+    location: "Shelakewadi, Kolhapur",
+    description: "A magical night exploring the mysteries of the Vaishakha sky. We observed the Flower Moon rising and tracked satellite passes across the summer constellations. A night of peace and cosmic connection for all participants.",
+    image: "/images/event-may1.png",
     priceCurrency: "INR",
-    offerPrice: "999",
-    originalPrice: "1599",
-    terms: [
-      {
-        section: "1. Timings & Schedule",
-        items: ["Report on time at the venue", "No late-night entries after the scheduled start"]
-      },
-      {
-        section: "2. Behaviour & Discipline",
-        items: ["Respect the farmhouse, nature, and all participants", "Misbehaviour, alcohol, or illegal substances are strictly banned"]
-      },
-      {
-        section: "3. Safety & Security",
-        items: [
-          "Stay within designated areas and inform organizers before leaving",
-          "Avoid wandering alone",
-          "Emergency medical aid available",
-          "Participants are responsible for existing health issues"
-        ]
-      },
-      {
-        section: "4. Equipment Usage",
-        items: ["Handle telescopes, binoculars, and equipment carefully", "Damage due to negligence must be paid by the participant"]
-      },
-      { section: "5. Cleanliness & Environment", items: ["Maintain cleanliness and avoid littering", "Campfires, if any, should only be managed by organizers"] },
-      { section: "6. Personal Belongings", items: ["Organizers are not liable for lost or damaged items", "Keep valuables at your own risk"] },
-      { section: "7. Photography & Media", items: ["Photos and videos may be used for educational or promotional purposes", "Allow users to opt out if they do not want to appear in media"] },
-      { section: "8. Parental Consent", items: ["A signed parental consent letter is mandatory for minors"] },
-      { section: "9. Weather & Unforeseen Situations", items: ["Event schedule may change or be cancelled due to weather", "Alternative indoor or astronomy activities may be conducted", "No refunds for weather-related cancellations"] },
-      { section: "10. Final Authority", items: ["Organizing committee decisions are final in all matters"] }
-    ]
+    driveUrl: "https://drive.google.com/drive/folders/1I8E8sn8w4pA3l4bhKUaPFhplF_ySpajU"
+  },
+  {
+    id: 13,
+    title: "Lunar Observation Workshop",
+    date: "May 2, 2026",
+    startDateIso: "2026-05-02T18:00:00",
+    endDateIso: "2026-05-03T06:00:00",
+    time: "6:00 PM onwards",
+    location: "Kolhapur Stargazing Hub",
+    description: "Detailed observation session focusing on lunar topography and prep for the upcoming eclipse. Participants learned how to identify major craters and seas using high-power telescopes.",
+    image: "/images/event-may2.png",
+    priceCurrency: "INR",
+    driveUrl: "https://drive.google.com/drive/folders/15Mi0sgZ44WJ1wK4qkNcM1e4FSJNuCV12"
   },
   {
     id: 11,
